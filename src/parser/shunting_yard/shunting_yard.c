@@ -60,7 +60,7 @@ token_list_t *shunting_yard(token_list_t *tokens) {
                 }
                 break;
             default:
-                printf("unsupported token: %s\n", token_to_string(token));
+                printf("Parser Error: unsupported token: %s\n", token_to_string(token));
                 break;
         }
 

@@ -27,7 +27,7 @@ token_t *evaluate_RPN(token_list_t *list) {
                 token_t *a = pop_token(stack);
 
                 if (!a || !b) {
-                    fprintf(stderr, "Operator does not have two operands\n");
+                    fprintf(stderr, "Evaluator Error: Operator does not have two operands\n");
                     break;
                 }
 
@@ -42,7 +42,7 @@ token_t *evaluate_RPN(token_list_t *list) {
                     case OP_DIVISION: result = x / y; break;
                     case OP_POWER: result = pow(x, y); break;
                     default:
-                        fprintf(stderr, "Unknown operator\n");
+                        fprintf(stderr, "Evaluator Error: Unknown operator\n");
                         result = 0;
                 }
 
@@ -52,7 +52,7 @@ token_t *evaluate_RPN(token_list_t *list) {
                 break;
             }
             default:
-                fprintf(stderr, "Unexpected token in evaluation\n");
+                fprintf(stderr, "Evaluator Error: Unexpected token in evaluation\n");
         }
         token = pop_token(list);
     }

@@ -57,7 +57,7 @@ token_t *read_int(input_stream_t *in) {
         int place = 1;
         while (isdigit(peek_char(in))) {
             char c = next_char(in);
-            float curr_val = c - '0';
+            double curr_val = c - '0';
             for (int i = 0; i < place; i++) {
                 curr_val /= 10;
             }

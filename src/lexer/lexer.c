@@ -102,7 +102,7 @@ token_list_t *tokenize(input_stream_t *input, trie_node_t *tree) {
         token_t *token = next_token(input, tree);
 
         if (token == NULL) {
-            fprintf(stderr, "error: lex error\n");
+            fprintf(stderr, "Lexor Error: bad token\n");
             exit(EXIT_FAILURE);
         }
 

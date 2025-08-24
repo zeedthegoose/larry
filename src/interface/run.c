@@ -18,7 +18,7 @@ void run(token_list_t *tokens) {
     token_t *result = evaluate_RPN(postfix);
 
     if (result == NULL) {
-        printf("bad result from evaluating\n");
+        printf("Running Error: bad result from evaluating\n");
         return;
     }
 
