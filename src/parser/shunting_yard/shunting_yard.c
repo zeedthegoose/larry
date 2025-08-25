@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdlib.h>
 #include <stdio.h>
 
 #include "ast.h"
@@ -15,8 +16,8 @@ token_list_t *shunting_yard(token_list_t *tokens) {
     token_list_t *output = init_token_list();
     token_list_t *stack = init_token_list();
 
-    token_t *token = pop_token(tokens);
-    while (token && (token->type != TOKEN_END && token->type != TOKEN_EOF)) {
+    token_t *token;
+    while ((token = pop_token(tokens)) && (token->type != TOKEN_END && token->type != TOKEN_EOF)) {
 
         switch (token->type) {
             case TOKEN_INT:
@@ -59,12 +60,13 @@ token_list_t *shunting_yard(token_list_t *tokens) {
                     pop_token(stack);
                 }
                 break;
-            default:
-                printf("Parser Error: unsupported token: %s\n", token_to_string(token));
+            default: {
+                char *token_str = token_to_string(token);
+                printf("Parser Error: unsupported token: %s\n", token_str);
+                free(token_str);
                 break;
+            }
         }
-
-        token = pop_token(tokens);
     }
 
     while (peek_token(stack)) {
